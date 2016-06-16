@@ -24,12 +24,16 @@
 		}
 	</style>
 	<script>
+		var speed = 10;
+		var speedp= 0;
 		var game;
 		var live = 5;
 		var t = 1;
 		function start(){
-			document.getElementById("stopB").addEventListener("click",stop,false);
-			game=setInterval(balldown, 10);
+			game=setInterval(balldown, speed);
+			document.getElementById("speedup").style.display="none";
+			document.getElementById("speeddown").style.display="none";
+			document.getElementById("startb").style.display="none";
 		}
 		
 		function start1(){
@@ -40,10 +44,13 @@
 		function stop(){
 			document.getElementById("stop").style.display="";
 			clearInterval(game);
+			document.getElementById("speedup").style.display="";
+			document.getElementById("speeddown").style.display="";
+			document.getElementById("startb").style.display="";
 		}
 		
 		function random(){
-			var maxNum = 1580;  
+			var maxNum = 1500;  
 			var minNum = 80;  
 			var n = Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;
 			document.getElementById("ball").style.left = n+"px";
@@ -122,8 +129,27 @@
 					break;
 			}
 		}
+		
+		
+		function speedup(){
+			if (speed > 10){
+				speed -= 10;
+			
+				document.getElementById("speed"+speedp).style.backgroundColor = "yellow";
+				speedp --;
+			
+			}
+		}
+		
+		function speeddown(){
+			if (speed < 40){
+				speed += 10;
+				speedp ++;
+				document.getElementById("speed"+speedp).style.backgroundColor = "black";
 				
-		start();
+			}
+		}
+		
 				
 	</script>
 	<body onkeydown="move()">
@@ -170,17 +196,24 @@
 		<div id ="lscore" style ="position: absolute; top:750px; left: 310px; width: 80px; height: 40px; color: white;">LIFE</div>
 		
 		
-		<button  type = "button"id ="speedup"style ="position: absolute; top: 50px;left: 0px;width: 80; heigh: 20px;">SPEED UP</button>
-		<button  type = "button"id ="speeddown"style ="position: absolute; top: 100px;left: 0px;width: 80; heigh: 20px;">SPEED DOWN</button>
+		<button  type = "button"id ="speedup"style ="position: absolute; top: 50px;left: 0px;width: 70; heigh: 20px;" onclick = "speedup()">SPEED UP</button>
+		<button  type = "button"id ="speeddown"style ="position: absolute; top: 100px;left: 0px;width: 70; heigh: 20px;" onclick = "speeddown()">SPEED DOWN</button>
 		
-		<div id ="speed1" style=""></div>
+		<div id ="speed1" style="position: absolute; top:150px; left: 5px;background-color: yellow;width: 40px; height: 10px;"></div>
+		
+		<div id ="speed2" style="position: absolute; top:170px; left: 5px; background-color: yellow;width: 40px; height: 10px;"></div>
+		
+		<div id ="speed3" style="position: absolute; top:190px; left: 5px;background-color: yellow;width: 40px; height: 10px;"></div>
+		
+		<div id ="speed4" style="position: absolute; top:210px; left: 5px;background-color: yellow;width: 40px; height: 10px;"></div>
+		
 		
 		
 		<button  type = "button"id ="stopB" style ="position: absolute; top: 750px;left: 1300px;width: 80; heigh: 20px;background: rgb(184,225,252); /* Old browsers */
 		background: -moz-linear-gradient(top, rgba(184,225,252,1) 0%, rgba(169,210,243,1) 10%, rgba(144,186,228,1) 25%, rgba(144,188,234,1) 37%, rgba(144,191,240,1) 50%, rgba(107,168,229,1) 51%, rgba(162,218,245,1) 83%, rgba(189,243,253,1) 100%); /* FF3.6-15 */
 		background: -webkit-linear-gradient(top, rgba(184,225,252,1) 0%,rgba(169,210,243,1) 10%,rgba(144,186,228,1) 25%,rgba(144,188,234,1) 37%,rgba(144,191,240,1) 50%,rgba(107,168,229,1) 51%,rgba(162,218,245,1) 83%,rgba(189,243,253,1) 100%); /* Chrome10-25,Safari5.1-6 */
 		background: linear-gradient(to bottom, rgba(184,225,252,1) 0%,rgba(169,210,243,1) 10%,rgba(144,186,228,1) 25%,rgba(144,188,234,1) 37%,rgba(144,191,240,1) 50%,rgba(107,168,229,1) 51%,rgba(162,218,245,1) 83%,rgba(189,243,253,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b8e1fc', endColorstr='#bdf3fd',GradientType=0 );"><span1>STOP<span1></button>
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b8e1fc', endColorstr='#bdf3fd',GradientType=0 );"onclick = "stop()"><span1>STOP<span1></button>
 		<button  onclick = "start1()"type = "button"id ="startb" style ="position: absolute; top: 750px;left: 1400px;width: 80; heigh: 20px;background: rgb(184,225,252); /* Old browsers */
 		background: -moz-linear-gradient(top, rgba(184,225,252,1) 0%, rgba(169,210,243,1) 10%, rgba(144,186,228,1) 25%, rgba(144,188,234,1) 37%, rgba(144,191,240,1) 50%, rgba(107,168,229,1) 51%, rgba(162,218,245,1) 83%, rgba(189,243,253,1) 100%); /* FF3.6-15 */
 		background: -webkit-linear-gradient(top, rgba(184,225,252,1) 0%,rgba(169,210,243,1) 10%,rgba(144,186,228,1) 25%,rgba(144,188,234,1) 37%,rgba(144,191,240,1) 50%,rgba(107,168,229,1) 51%,rgba(162,218,245,1) 83%,rgba(189,243,253,1) 100%); /* Chrome10-25,Safari5.1-6 */
